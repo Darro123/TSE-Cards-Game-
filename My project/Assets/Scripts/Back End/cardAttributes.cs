@@ -65,6 +65,9 @@ public class Card : MonoBehaviour
             c.transform.SetParent(target.transform);
 
         // move to swapped positions
+        int sourceCount = Mathf.Min(sourceHand.cards.Count, sourcePositions.Count);
+        int targetCount = Mathf.Min(targetHand.cards.Count, targetPositions.Count);
+
         for (int i = 0; i < sourceHand.cards.Count; i++)
             sourceHand.cards[i].transform.position = sourcePositions[i];
 
