@@ -31,6 +31,9 @@ public class TurnManager : MonoBehaviour
 
     public void StartPlayerTurn()
     {
+        Debug.Log("StartPlayerTurn" + currentPlayerIndex);
+
+
         currentPhase = TurnPhase.StartOfTurn;
         PlayerHand current = CurrentHand();
 
@@ -110,6 +113,8 @@ public class TurnManager : MonoBehaviour
 
     public void EndTurn()
     {
+
+        Debug.Log("Player" + currentPlayerIndex + "'s has ended");
         currentPlayerIndex = (currentPlayerIndex + 1) % players.Length;
         StartPlayerTurn();
     }
