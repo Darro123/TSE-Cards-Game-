@@ -46,6 +46,15 @@ public class Card : MonoBehaviour
         targetHand.cards = temp;
 
         Debug.Log(source.name + " swapped hands with " + target.name);
+
+        Debug.Log(source.name + " now has " + sourceHand.cards.Count + " cards");
+        Debug.Log(target.name + " now has " + targetHand.cards.Count + " cards");
+
+        foreach (Card c in sourceHand.cards)
+            Debug.Log(source.name + " hand: " + c.cardName);
+
+        foreach (Card c in targetHand.cards)
+            Debug.Log(target.name + " hand: " + c.cardName);
     }
 
     // target player loses their next turn
@@ -92,6 +101,12 @@ public class Card : MonoBehaviour
 
         if (targetHand == null)
         {
+            targetHand = target.GetComponentInParent<PlayerHand>();
+            
+        }
+
+        if (targetHand == null)
+        {
             Debug.Log("couldnt find PlayerHand on target");
             return;
         }
@@ -113,9 +128,16 @@ public class Card : MonoBehaviour
         PlayerHand sourceHand = source.GetComponent<PlayerHand>();
         PlayerHand targetHand = target.GetComponent<PlayerHand>();
 
+        if (targetHand == null)
+        {
+            targetHand = target.GetComponentInParent<PlayerHand>();
+            
+            
+        }
+
         if (sourceHand == null || targetHand == null)
         {
-            Debug.Log("couldnt find PlayerHand on one of the players");
+            Debug.Log("Couldnt find playerHand on one of the players");
             return;
         }
 

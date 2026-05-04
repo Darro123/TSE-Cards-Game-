@@ -7,8 +7,15 @@ public class CardClick : MonoBehaviour
     private void OnMouseDown()
     {
         if (UISelection.Instance.selectedCard == null)
-            UISelection.Instance.SelectCard(card);
+        {
+            UISelection.Instance.selectedCard = card;
+        }
         else
+        {
             UISelection.Instance.SelectTarget(gameObject);
+        }
+
     }
+    
+    
 }

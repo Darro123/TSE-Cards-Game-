@@ -9,5 +9,6 @@ public class PlayerClick : MonoBehaviour
     private void OnMouseDown()
     {
         UISelection.Instance.SelectTarget(playerObject);
+        Debug.Log("target player: " + playerObject.name);
     }
 }
