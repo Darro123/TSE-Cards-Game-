@@ -41,20 +41,45 @@ public class Card : MonoBehaviour
             return;
         }
 
+        // store positions before swapping
+        List<Vector3> sourcePositions = new List<Vector3>();
+        foreach (Card c in sourceHand.cards)
+            sourcePositions.Add(c.transform.position);
+
+        List<Vector3> targetPositions = new List<Vector3>();
+        foreach (Card c in targetHand.cards)
+            targetPositions.Add(c.transform.position);
+
+        Debug.Log("source positions count: " + sourcePositions.Count);
+        Debug.Log("target positions count: " + targetPositions.Count);
+
+        // swap the data lists
         List<Card> temp = sourceHand.cards;
         sourceHand.cards = targetHand.cards;
         targetHand.cards = temp;
 
-        Debug.Log(source.name + " swapped hands with " + target.name);
+        // move GameObjects to correct parent
+        foreach (Card c in sourceHand.cards)
+            c.transform.SetParent(source.transform);
+        foreach (Card c in targetHand.cards)
+            c.transform.SetParent(target.transform);
 
+        // move to swapped positions
+        for (int i = 0; i < sourceHand.cards.Count; i++)
+            sourceHand.cards[i].transform.position = sourcePositions[i];
+
+        for (int i = 0; i < targetHand.cards.Count; i++)
+            targetHand.cards[i].transform.position = targetPositions[i];
+
+        Debug.Log(source.name + " swapped hands with " + target.name);
         Debug.Log(source.name + " now has " + sourceHand.cards.Count + " cards");
         Debug.Log(target.name + " now has " + targetHand.cards.Count + " cards");
-
         foreach (Card c in sourceHand.cards)
             Debug.Log(source.name + " hand: " + c.cardName);
-
         foreach (Card c in targetHand.cards)
             Debug.Log(target.name + " hand: " + c.cardName);
+
+       
     }
 
     // target player loses their next turn
