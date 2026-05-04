@@ -6,6 +6,7 @@ public class Card : MonoBehaviour
 {
     public string cardName;
     public string abilityType; // "swap", "skip", "peek"
+    public bool isFaceDown;
 
     // call this when a card is played, passing in who played it and who its aimed at
     public void UseAbility(GameObject source, GameObject target)

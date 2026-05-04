@@ -31,6 +31,8 @@ public class TurnManager : MonoBehaviour
 
     public void StartPlayerTurn()
     {
+        Debug.Log("it is player " + currentPlayerIndex + "'s turn");
+
         currentPhase = TurnPhase.StartOfTurn;
         PlayerHand current = CurrentHand();
 
