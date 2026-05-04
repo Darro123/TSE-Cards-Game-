@@ -11,6 +11,8 @@ public class Card : MonoBehaviour
     // call this when a card is played, passing in who played it and who its aimed at
     public void UseAbility(GameObject source, GameObject target)
     {
+        Debug.Log(cardName + " ability triggered: " + abilityType);
+
         if (abilityType == "swap")
             SwapHands(source, target);
         else if (abilityType == "skip")

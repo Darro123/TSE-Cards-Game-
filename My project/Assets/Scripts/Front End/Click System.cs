@@ -6,6 +6,9 @@ public class CardClick : MonoBehaviour
 
     private void OnMouseDown()
     {
-        UISelection.Instance.SelectCard(card);
+        if (UISelection.Instance.selectedCard == null)
+            UISelection.Instance.SelectCard(card);
+        else
+            UISelection.Instance.SelectTarget(gameObject);
     }
 }
